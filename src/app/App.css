@@ -1,0 +1,112 @@
+
+:root{
+    --grey: #C2C8DA;
+    --brown: #d97235;
+    --darkColor: #210E09;
+    --yellow: #E6C744;
+}
+
+
+button{
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    border: 0.01em solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    color: black;
+    background-color: var(--yellow);
+    font-size: 12px;
+    padding: 10px 16px;
+}
+.button-light, .button-dark{
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    font-size: 12px;
+    padding: 10px 16px;
+    margin-bottom: 5px;
+    width:100%;
+}
+.button-light{
+    border: 0.01em solid black;
+    color: black;
+    background-color: var(--yellow);
+}
+.button-dark{
+    border: 0.01em solid var(--brown);
+    color: white;
+    background-color: var(--darkColor);
+}
+
+.select-light, .select-dark{
+    font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    font-size: 12px;
+    padding: 9px 20px;
+    width:100%;
+
+}
+
+.select-light{
+    border: 0.01em solid black;
+    color: black;
+    background-color: var(--yellow);
+}
+.select-dark{
+    border: 0.01em solid var(--brown);
+    color: white;
+    background-color: var(--darkColor);
+}
+
+.h1-light, .p-light {
+    color: black
+}
+.h1-dark, .p-dark {
+    color: white
+}
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

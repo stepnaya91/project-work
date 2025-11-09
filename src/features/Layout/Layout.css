@@ -1,0 +1,11 @@
+@import"../../app/Variables.css";
+
+.layout-div-light{
+    height:100em;
+    background-color: var(--lightYellow);
+}
+
+.layout-div-dark{
+    height:100em;
+    background-color: var(--brown);
+}
