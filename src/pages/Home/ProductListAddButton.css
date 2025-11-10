@@ -1,0 +1,24 @@
+.add-div{
+    position:relative;
+    display:flex;
+    justify-content: space-around;
+}
+.show-div-button,.add-div-button{
+    top: 100px;
+    position:sticky;
+    padding-top: 10px;
+    height: 12px;
+    display: grid;
+}
+.range-div{
+    display: flex;
+    justify-content: center;
+}
+
+.range-slider{
+    position: sticky;
+    top: 0;
+    height: 100px;
+    width: 200px;
+    padding-top: 12px;
+}

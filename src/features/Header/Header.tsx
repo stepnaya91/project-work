@@ -28,8 +28,8 @@ export const Header: React.FC = () => {
                 <NavLink className={"link link-"+theme} to="/Profile">
                     {t('profile')}
                 </NavLink>
-                <NavLink className={"link link-"+theme} to="/ProductList">
-                    {t('catalog')}
+                <NavLink className={"link link-"+theme} to="/Categories">
+                    {t('categories')}
                 </NavLink>
                 <NavLink className={"link link-"+theme} to="/Basket">
                     {t('addToCart')}

@@ -14,7 +14,9 @@ const resources = {
         "home": "Home",
         "addToCart": "Cart",
         "profile": "Profile",
-        "catalog": "Catalog"
+        "catalog": "Catalog",
+        "categories": "Categories",
+        "addCategory": "Add Category"
     }
   },
   ru: {
@@ -28,7 +30,9 @@ const resources = {
         "home": "Домой",
         "addToCart": "Корзина",
         "profile": "Профиль",
-        "catalog": "Каталог"
+        "catalog": "Каталог",
+        "categories": "Категории",
+        "addCategory": "Добавить категорию"
     }
   }
 };

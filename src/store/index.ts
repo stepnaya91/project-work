@@ -2,22 +2,21 @@ import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import { sagas } from './sagas';
 import { token } from './slices/token';
-import { profile } from './slices/profile';
-import { userApi } from './services/userApi';
-import { profileApi } from './services/profileApi';
+import { basket } from './slices/basket';
+import { products } from './slices/products';
+import { baseApi } from './services/api';
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
-    [userApi.reducerPath]: userApi.reducer,
-    [profileApi.reducerPath]: profileApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
     token,
-    profile
+    basket,
+    products
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware()
-        .concat(userApi.middleware)
-        .concat(profileApi.middleware)
+        .concat(baseApi.middleware)
         .concat(sagaMiddleware),
 });
 

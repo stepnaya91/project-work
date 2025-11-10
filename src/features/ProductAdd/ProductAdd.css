@@ -1,0 +1,45 @@
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px 60px 40px;
+  border-radius: 20px;
+  background: #fff;
+  color: #1a1a1a;
+  gap: 4px;
+  text-align: left;
+
+  h2 {
+    margin: 0 0 10px 0;
+  }
+
+  & > input,
+  textarea, select {
+    min-width: 260px;
+    padding: 6px 0 6px 10px;
+  }
+
+  button {
+    margin-top: 24px;
+  }
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .input-error,
+  fieldset:has(input.input-error) {
+    border-color: #ff0202;
+  }
+
+  .error {
+    margin: -4px 0 0 0;
+    font-size: 14px;
+    color: #bd0000;
+  }
+
+  fieldset:has(p.error) p {
+    margin-top: 4px;
+  }
+}
