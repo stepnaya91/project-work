@@ -3,7 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 import { sagas } from './sagas';
 import { token } from './slices/token';
 import { basket } from './slices/basket';
-import { products } from './slices/products';
 import { baseApi } from './services/api';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -11,8 +10,7 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     token,
-    basket,
-    products
+    basket
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware()

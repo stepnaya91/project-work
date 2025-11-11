@@ -13,5 +13,6 @@ export const baseApi = createApi({
             return headers;
         }
     }), 
-  endpoints: () => ({}), // тут ничего, всё будет расширяться
+    tagTypes: ["Products", "Categories"],
+    endpoints: () => ({}), 
 })

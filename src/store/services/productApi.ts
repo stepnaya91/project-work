@@ -15,9 +15,11 @@ export const productApi = baseApi.injectEndpoints({
         };
         },void>({
         query: () => 'products', 
+        providesTags: ["Products"]
     }),
     getProduct: builder.query({
-        query: (id:string) => `products/${id}`
+        query: (id:string) => `products/${id}`,
+        providesTags: ["Products"]
     }),
     //Создает новую сущность        
     postProduct: builder.mutation<Product, CreateProduct>({
@@ -26,20 +28,23 @@ export const productApi = baseApi.injectEndpoints({
         method: 'POST',
         body: product,
         }),
+        invalidatesTags: ["Products"],
     }),
     deleteProduct: builder.mutation({
         query: (id) => ({
         url: `products/${id}`,
         method: 'DELETE',
-        body: id,    
-        })
+        body: id,  
+        }),
+        invalidatesTags: ["Products"],
     }),
     updateProduct: builder.mutation({
         query: ({id, params}) => ({
         url:`products/${id}`,
         method: 'PUT',
-        body: params    
-        })
+        body: params, 
+        }),
+        invalidatesTags: ["Products"],
     })
     }),
 });

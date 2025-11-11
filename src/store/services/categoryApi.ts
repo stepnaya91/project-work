@@ -19,6 +19,7 @@ export const categoryApi = baseApi.injectEndpoints({
             };
             },void>({
             query: () => 'categories', 
+            providesTags: ["Categories"],
         }),
         getCategory: builder.query({
             query: (id:string) => `categories/${id}`
@@ -30,20 +31,23 @@ export const categoryApi = baseApi.injectEndpoints({
             method: 'POST',
             body: body,
             }),
+            invalidatesTags: ["Categories"],
         }),
         deleteCategory: builder.mutation({
             query: (id) => ({
             url: `categories/${id}`,
             method: 'DELETE',
-            body: id,    
-            })
+            body: id
+            }),    
+            invalidatesTags: ["Categories"],
         }),
         updateCategory: builder.mutation({
             query: ({id, params}) => ({
             url:`categories/${id}`,
             method: 'PUT',
             body: params    
-            })
+            }),    
+            invalidatesTags: ["Categories"],
         })
     }),
 });

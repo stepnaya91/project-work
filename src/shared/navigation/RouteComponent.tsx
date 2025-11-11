@@ -7,6 +7,7 @@ import { Modal } from "src/pages/Modal/Modal";
 import { ProductAdd } from "src/features/ProductAdd/ProductAdd";
 import { CategoryList } from "src/features/Categories/CategoryList";
 import { CategoryAdd } from "src/features/Categories/CategoryAdd/CategoryAdd";
+import BasketList from "src/pages/BasketList/BasketList";
 
 export function RouteComponent(){
     const location = useLocation();
@@ -21,6 +22,7 @@ export function RouteComponent(){
                     <Route path="/EditCategory/:categoryId" element={<Modal><CategoryAdd/></Modal>}></Route>
                     <Route path="/EditProduct" element={<Modal><ProductAdd/></Modal>} />  
                     <Route path="/EditProduct/:productId" element={<Modal><ProductAdd/></Modal> } /> 
+                    <Route path="/Basket" element={<BasketList/>}></Route>
                 </Routes>   
                 {background && (
                     <Routes>

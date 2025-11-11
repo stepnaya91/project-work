@@ -1,5 +1,5 @@
 import clsx from "clsx"
-import React from "react"
+import React, { useEffect } from "react"
 import { useForm } from 'react-hook-form';
 import "./ProductAdd.css";
 import z from "zod";
@@ -31,42 +31,50 @@ export const ProductAdd: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: zodResolver(formSchema) });
+        reset,
+    } = useForm({ 
+        resolver: zodResolver(formSchema)
+    });
+
+    useEffect(()=>{
+        if(product)    
+            reset({
+                name: product.name,
+                price: product.price,
+                categoryId: product.category.id,
+                desc: product.desc,
+            });
+    }, [product, reset])
 
     const addItem = async (product: CreateProduct) => {
         await postProduct(product).unwrap();
     };
 
     const updateItem = async (product: UpdateProduct) => {
-        await updateProduct(product).unwrap();
+        await updateProduct({id:productId,params:product}).unwrap();
     }
     
     const navigate = useNavigate();
 
     const onSubmit = (data: ProductSchema) => {
         console.log('Product Add: ', data);
-
-        if(productId){
-            updateItem({categoryId:data.categoryId, name:data.name, price:data.price, desc:data.desc});
-        }
-        else{
-            addItem({categoryId:data.categoryId, name:data.name, price:data.price, desc:data.desc});
-        }   
-        navigate(-1); // Возвращает на предыдущую страницу            
+        try{
+            if(productId){
+                updateItem({categoryId:data.categoryId, name:data.name, price:data.price, desc:data.desc});
+            }
+            else{
+                addItem({categoryId:data.categoryId, name:data.name, price:data.price, desc:data.desc});
+            }   
+            navigate(-1); // Возвращает на предыдущую страницу    
+        }catch(e){
+            console.log(e)
+        }        
     }
-
-    const name = product?product.name:undefined;
-    const price = product?product.price:undefined;
-    const categoryId = product?product.category.id:undefined;
-    const photo = product?product.photo:undefined;
-    const description = product?product.description:undefined;
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Добавление/изменение товара</h2>
+            <h2>{productId?"Изменение":"Добавление"} товара</h2>
             <label htmlFor="name">Название: </label>
             <input
-                defaultValue={name?name:undefined}
                 id="name"
                 type="text"
                 placeholder="Введите название товара"
@@ -77,7 +85,6 @@ export const ProductAdd: React.FC = () => {
 
             <label htmlFor="price">Цена: </label>
             <input
-                defaultValue={price?price:undefined}
                 id="price"
                 type="number"
                 placeholder="Введите цену товара"
@@ -88,22 +95,20 @@ export const ProductAdd: React.FC = () => {
 
             <label htmlFor="categoryId">Категория: </label>
             <select 
-                defaultValue={categoryId?categoryId:undefined}
                 id="categoryId"
                 {...register("categoryId")}            >
                 <option value="">Выберите категорию..</option>
-                {categories.data.map((category)=>(<option key={category.id} value={category.name}>{category.name}</option>))}
+                {categories?categories.data.map((category)=>(<option key={category.id} value={category.id}>{category.name}</option>)):undefined}
             </select>
             {errors.categoryId && <p className="error">{errors.categoryId.message}</p>}
 
             <label htmlFor="description">Описание: </label>
             <textarea
-                defaultValue={description?description:undefined}
                 id="description"
                 {... register("desc")}
             />
 
-            <button className={"button-"+theme} type="submit" >Добавить товар</button>
+            <button className={"button-"+theme} type="submit" >{productId?"Обновить":"Добавить"} товар</button>
         </form>
     )
 }
