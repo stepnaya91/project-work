@@ -25,9 +25,7 @@ export const BasketButton: React.FC<Product> = ({id,name, category,price,desc,ph
     
     if (count===0) {
         return (
-            <div className="basket-add-button-div">
-                <Button label={t('basketButtonName')} onClick={pushToBasket}/>
-            </div>
+            <Button label={t('basketButtonName')} onClick={pushToBasket}/>
         )
 
     }

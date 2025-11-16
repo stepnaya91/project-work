@@ -23,8 +23,7 @@ export const categoryApi = baseApi.injectEndpoints({
         }),
         getCategory: builder.query({
             query: (id:string) => `categories/${id}`
-        }),
-        //Создает новую сущность        
+        }),     
         postCategory: builder.mutation<Category, CreateCategoryParams>({
             query: (body) => ({
             url: 'categories',
@@ -52,4 +51,4 @@ export const categoryApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetCategoriesQuery, useGetCategoryQuery,  usePostCategoryMutation, useUpdateCategoryMutation } = categoryApi; 
+export const { useGetCategoriesQuery, useGetCategoryQuery,  usePostCategoryMutation, useUpdateCategoryMutation, useDeleteCategoryMutation } = categoryApi; 

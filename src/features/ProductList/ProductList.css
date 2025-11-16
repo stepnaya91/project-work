@@ -1,6 +1,6 @@
 .product-list-ul{
     padding-left: 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(5, 1fr);
 }
+

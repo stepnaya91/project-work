@@ -1,6 +1,7 @@
-type Filters = {
+type ProductFilters = {
   name?: string;
   ids?: string[];
+  categoryIds?: string[];
   pagination?: {
     pageSize?: number;
     pageNumber?: number;
@@ -18,4 +19,3 @@ type Filters = {
     field: 'id' | 'createdAt' | 'updatedAt' | 'name' | 'date';
   };
 };
-

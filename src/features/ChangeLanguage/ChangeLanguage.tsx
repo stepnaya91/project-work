@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "../../app/App.css"
 import { useLanguage } from "../../../src/shared/providers/LanguageProvider";
 import { useTheme } from "../../../src/shared/providers/ThemeProvider";
 

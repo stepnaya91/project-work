@@ -22,3 +22,13 @@
     width: 200px;
     padding-top: 12px;
 }
+
+.product-list-actions{
+    display: flex;
+    flex-direction: column; 
+    gap:5px ;    
+    top: 100px;
+    position:sticky;
+    padding-top: 8px;
+    height: 12px; 
+}

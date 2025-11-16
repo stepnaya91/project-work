@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
 import { z } from 'zod';
-import './Profile.css'
 import { useTheme } from '../../../src/shared/providers/ThemeProvider';
 import { useLanguage } from '../../../src/shared/providers/LanguageProvider';
 import { useGetProfileQuery, usePostProfileMutation } from 'src/store/services/profileApi';

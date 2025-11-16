@@ -61,14 +61,14 @@ export const CategoryAdd: React.FC = () => {
         else{
             addItem(data.name);
         }   
-        navigate(-1); // Возвращает на предыдущую страницу            
+        navigate(-1);             
     }
 
     const name = category?category.name:undefined;
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <h2>Добавление/изменение категории</h2>
+            <h2>{categoryId?"Изменение":"Добавление"} категории</h2>
             <label htmlFor="name">Название: </label>
             <input
                 defaultValue={name?name:undefined}
@@ -82,7 +82,7 @@ export const CategoryAdd: React.FC = () => {
         
             {errors.root && <p className="error">Ошибка: {errors.root.message}</p>}
 
-            <button className={"button-"+theme} type="submit" >{t('addCategory')}</button>
+            <button className={"button-"+theme} type="submit" >{categoryId?t('changeCategory'):t('addCategory')}</button>
         </form>
     )
 }

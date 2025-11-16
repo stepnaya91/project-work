@@ -10,11 +10,11 @@ interface NavButtonProps{
     onClick?: () => void;
 }
 
-export const NavButton: React.FC<NavButtonProps> = ({label, linkTo, ...props}:NavButtonProps) => {
+export const NavButton: React.FC<NavButtonProps> = ({label, linkTo, className, ...props}:NavButtonProps) => {
     const {theme} = useTheme();        
     const location = useLocation();
     return (
-        <div className="show-div-button">
+        <div className={className}>
             <Link to={linkTo} state={{ background: location }}><Button className={"button-"+theme}  label={label}/></Link>
             <Outlet />
         </div>  

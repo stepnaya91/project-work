@@ -16,7 +16,8 @@ const resources = {
         "profile": "Profile",
         "catalog": "Catalog",
         "categories": "Categories",
-        "addCategory": "Add Category"
+        "addCategory": "Add Category",
+        "changeCategory": "Change Category"
     }
   },
   ru: {
@@ -32,7 +33,8 @@ const resources = {
         "profile": "Профиль",
         "catalog": "Каталог",
         "categories": "Категории",
-        "addCategory": "Добавить категорию"
+        "addCategory": "Добавить категорию",
+        "changeCategory": "Поменять категорию"
     }
   }
 };

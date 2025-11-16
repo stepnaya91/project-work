@@ -4,14 +4,15 @@ import { createPortal } from "react-dom";
 import "../../app/Modal.css";
 
 interface ModalProps{
+    withHeader?: boolean,
     children: ReactNode
 }
 
-export const Modal: React.FC<ModalProps> =  ({children}) => {
+export const Modal: React.FC<ModalProps> =  ({children, withHeader=true}) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate(-1); // Возвращает на предыдущую страницу
+    navigate(-1);
   };
 
   return (
@@ -19,9 +20,11 @@ export const Modal: React.FC<ModalProps> =  ({children}) => {
         {createPortal(
             <div className="modal">
                 <div className='modal-dialog'>
+                    {withHeader &&
                     <div className='modal-header'>
                         <h3 className='modal-title'>Подтвердите действие</h3>
                     </div>  
+                    }
                     <div className='modal-body'>
                         <div className='modal-content'>{children}</div>
                     </div>

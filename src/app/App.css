@@ -6,6 +6,12 @@
     --yellow: #E6C744;
 }
 
+a:visited{
+    color:black
+}
+a{
+    color:black
+}
 
 button{
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -49,7 +55,7 @@ button{
     display: inline-block;
     line-height: 1;
     font-size: 12px;
-    padding: 9px 20px;
+    padding: 8px 20px;
     width:100%;
 
 }

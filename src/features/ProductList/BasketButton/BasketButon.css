@@ -1,8 +1,4 @@
-.basket-add-button-div{ 
-    display: flex; 
-    justify-content: flex-end;
-    padding-right: 0.75em;
-}
+
 .basket-buttons{
   display: flex;
 }

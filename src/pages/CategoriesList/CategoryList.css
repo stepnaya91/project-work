@@ -1,0 +1,34 @@
+@import "../../app/Variables.css";
+
+.categories-table {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 5px solid var(--lightYellow);
+	border-top: 5px solid var(--lightYellow);
+	border-bottom: 3px solid var(--lightYellow);
+	font-size: 15px;
+}
+.categories-table th {
+	font-weight: bold;
+	padding: 7px;
+	background: var(--yellow);
+	border: none;
+	text-align: left;
+	font-size: 15px;
+	border-top: 3px solid var(--lightYellow);
+	border-bottom: 3px solid var(--yellow);
+}
+.categories-table td {
+	padding: 7px;
+	border: none;
+	border-top: 3px solid var(--lightYellow);
+	border-bottom: 3px solid var(--lightYellow);
+	font-size: 15px;
+}
+.categories-table tbody tr:nth-child(even){
+	background: #f8f8f8!important;
+}
+
+.categories-table td a:visited{
+    color: black;
+}

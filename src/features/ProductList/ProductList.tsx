@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react"
-import { Basket } from "./Basket/Basket"
 import "./ProductList.css"
+import { ProductCard } from "./ProductCard/ProductCard"
 
 export interface ProductListProps {
     products: Product[]
@@ -11,7 +11,8 @@ export const ProductList: React.FC<ProductListProps>= ({products}) => {
         return <p>Список товаров пуст</p>;
 
     const productItems = useMemo(() => products.map((product)=>{
-        return <Basket 
+        if(product.category){
+        return <ProductCard 
             key={product.id} 
             name={product.name} 
             price={product.price} 
@@ -22,7 +23,8 @@ export const ProductList: React.FC<ProductListProps>= ({products}) => {
             createdAt={product.createdAt}
             updatedAt={product.updatedAt}
 
-            />
+            />}
+        else{console.log(`Товар ${product.name} из удаленной категории`)}
     }),[products])
     return (
         <div>

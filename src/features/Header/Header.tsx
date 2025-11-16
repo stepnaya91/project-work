@@ -1,7 +1,7 @@
 import React from "react"
 import { Logo } from "../Logo/Logo"
 import "./Header.css"
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "../Button/Button";
 import { ToggleTheme } from "../ToogleTheme/ToggleTheme";
@@ -9,6 +9,8 @@ import { useTheme } from "../../../src/shared/providers/ThemeProvider";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
 import { useLanguage } from "../../../src/shared/providers/LanguageProvider";
 import { tokenActions } from "../../../src/store/slices/token";
+import { NavButton } from "../NavButton/NavButton";
+
 
 export const Header: React.FC = () => {
     const {theme} = useTheme();
@@ -16,6 +18,7 @@ export const Header: React.FC = () => {
     const className="header-div-"+theme;
     const dispatch = useDispatch();
     const logout = () => {dispatch(tokenActions.empty())};
+
     return(        
         <div className={className}>
             <div className="header-div-logo">
@@ -25,9 +28,6 @@ export const Header: React.FC = () => {
                 <NavLink className={"link link-"+theme} to="/">
                     {t('home')}
                 </NavLink>
-                <NavLink className={"link link-"+theme} to="/Profile">
-                    {t('profile')}
-                </NavLink>
                 <NavLink className={"link link-"+theme} to="/Categories">
                     {t('categories')}
                 </NavLink>
@@ -35,15 +35,14 @@ export const Header: React.FC = () => {
                     {t('addToCart')}
                 </NavLink>
             </div>
-            <div>
-                <Button label="Выйти" onClick={logout}></Button>
-            </div>
             <div className="header-div-right">
-                <div>
+                <div className="settings-div">
                     <ToggleTheme/>
-                </div>
-                <div>
                     <ChangeLanguage/>
+                </div>
+                <div className="profile-div">
+                    <NavButton linkTo="/Profile" label={t('profile')} />
+                    <Button label="Выйти" onClick={logout}></Button>
                 </div>
             </div>
         </div>
