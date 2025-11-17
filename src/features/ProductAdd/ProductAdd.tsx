@@ -11,13 +11,18 @@ import { useGetProductQuery, usePostProductMutation, useUpdateProductMutation } 
 import { useLanguage } from "src/shared/providers/LanguageProvider";
 import { usePostUploadMutation } from "src/store/services/filesApi";
 
+const fileSchema = z
+  .instanceof(FileList)
+  .optional()
+  .refine(
+    (files) => !files || (files && files[0]?.type === "image/jpeg"),
+    "Можно загружать только JPG файлы"
+  ); 
+
 const formSchema = z
   .object({
         name: z.string().min(1, "Введите название товара"),    
-        photo: z.any().refine(
-                (file) => file?.[0]?.type === "image/jpeg",
-                "Можно загружать только JPG файлы"
-            ),
+        photo: fileSchema,
         price: z.number('Укажите цену').min(1,'Введите цену').max(5000, 'Не более 5000'),
         categoryId: z.string().min(1, "Выберите категорию"),
         desc: z.string().optional()
@@ -26,7 +31,7 @@ const formSchema = z
 
 type ProductSchema = {
     name: string,
-    photo: FileList,
+    photo?: FileList,
     price: number,
     categoryId: string,
     desc: string
@@ -99,14 +104,14 @@ export const ProductAdd: React.FC = () => {
             console.log(p)
         }catch(e){
             console.log('Error: ', e);
-            if (e && 'data' in e && e.data?.errors) {
-                Object.entries(e.data.errors).forEach(([field,message]) => {
-                    setError('root', message);
-                });
-            } else {                
+            //if (e && 'data' in e && e.data?.errors) {
+            //    Object.entries(e.data.errors).forEach(([field,message]) => {
+            //        setError('root', message);
+            //    });
+            //} else {                
                 console.log('Error: ', e);
                 setError('root', {type: "commonErr", message: "Непредвиденная ошибка"});
-            }            
+            //}            
         }
     }
     
@@ -154,6 +159,7 @@ export const ProductAdd: React.FC = () => {
                 className={clsx({ 'input-error': errors.photo }, theme)}
                 {...register('photo')}
             />
+            {errors.photo && <p className="error">{errors.photo.message}</p>}
 
             {imageUrl && <div style={{ marginTop: 20 }}>
                     <img

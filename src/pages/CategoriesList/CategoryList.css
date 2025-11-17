@@ -32,3 +32,7 @@
 .categories-table td a:visited{
     color: black;
 }
+
+.add-category{
+	width: 200px
+}

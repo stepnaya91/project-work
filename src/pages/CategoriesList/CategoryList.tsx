@@ -30,7 +30,7 @@ export const CategoryList: React.FC = () => {
     return (
       <>
         <p>Список категорий пуст</p>   
-        <NavButton linkTo="/EditCategory" label={t('addCategory')}/>   
+        <NavButton className="add-category" linkTo="/EditCategory" label={t('addCategory')}/>   
       </>
     )
 
@@ -48,12 +48,11 @@ export const CategoryList: React.FC = () => {
             </thead>
             <tbody>
               {categories.data.map(item => (
-                <tr key={item.id}>
-                  
+                <tr key={item.id}>                  
                   <td><Link to={"/EditCategory/"+item.id}  state={{ background: location }} className="category-link">{item.name}</Link></td>
                   <td>{item.createdAt.toString()}</td>
                   <td>{item.updatedAt.toString()}</td>
-                  <td><Button label="Удалить категорию" onClick={()=>{deleteCategory(item.id)}}/></td>
+                  <td></td>
                 </tr>
               ))}
             </tbody>

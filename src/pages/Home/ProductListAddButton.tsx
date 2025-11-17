@@ -13,7 +13,7 @@ interface ProductProps{
 function withAddButton (ProductListComponent: React.FC<ProductProps>) {
 
     return function AddButtonComponent() {   
-        const pageSize = 10;
+        const pageSize = 1000;
         const [pageNumber, setPageNumber] = useState(1);
         const [allProducts, setAllProducts] = useState<Product[]>([]);
 
@@ -30,17 +30,11 @@ function withAddButton (ProductListComponent: React.FC<ProductProps>) {
 
         const { data: products, isLoading, isError, error } = useGetProductsQuery(filters); 
 
-        useEffect(() => {
-        if (products?.data) {
-            setAllProducts(prev=>[...prev, ...products.data]);
-        }
-        }, [products]);
+        //const loadMore = useCallback(() => {
 
-        const loadMore = useCallback(() => {
-
-            if(allProducts.length%pageSize<=0)
-                setPageNumber(prev=>prev+1);
-        }, [pageNumber]);
+        //    if(allProducts.length%pageSize==0)
+        //        setPageNumber(prev=>prev+1);
+        //}, [allProducts.length]);
 
         if (isLoading) return <p>Загрузка списка товаров...</p>;
         if (isError){
@@ -60,11 +54,9 @@ function withAddButton (ProductListComponent: React.FC<ProductProps>) {
             <> 
                 <div className="product-list-div">               
                     <div className="add-div">
-                        <ProductListComponent products={allProducts}/>
+                        <ProductListComponent products={products.data}/>
                         <div className="product-list-actions">
-                            <NavButton linkTo="/EditProduct" label="Добавить товар"/>     
-                            <Button label="Загрузить еще" onClick={loadMore}/>   
-                            <NavButton linkTo="/Upload" label="Загрузка файла"/>
+                            <NavButton linkTo="/EditProduct" label="Добавить товар"/>       
                         </div>       
                     </div>      
                 </div>       

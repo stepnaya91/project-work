@@ -8,7 +8,7 @@ import { ProductAdd } from "src/features/ProductAdd/ProductAdd";
 import { CategoryList } from "src/pages/CategoriesList/CategoryList";
 import { CategoryAdd } from "src/features/Categories/CategoryAdd/CategoryAdd";
 import BasketList from "src/pages/BasketList/BasketList";
-import { Upload } from "src/pages/Upload/Upload";
+import { v4 as uuidv4 } from 'uuid';
 
 export function RouteComponent(){
     const location = useLocation();
@@ -17,23 +17,21 @@ export function RouteComponent(){
         <ProtectedRoute>        
                 <Routes location={background || location}>                    
                     <Route path="/" element={<ProductListAddButton/>}/>
-                    <Route path="/Profile" element={<Modal withHeader={false}><Profile/></Modal>}></Route>
+                    <Route path="/Profile"  element={<Modal withHeader={false}><Profile key={uuidv4()}/></Modal>}></Route>
                     <Route path="/Categories" element={<CategoryList/>}></Route>
                     <Route path="/EditCategory" element={<Modal ><CategoryAdd/></Modal>}></Route>
                     <Route path="/EditCategory/:categoryId" element={<Modal><CategoryAdd/></Modal>}></Route>
                     <Route path="/EditProduct" element={<Modal><ProductAdd/></Modal>} />  
                     <Route path="/EditProduct/:productId" element={<Modal><ProductAdd/></Modal> } /> 
                     <Route path="/Basket" element={<BasketList/>}></Route>
-                        <Route path="/Upload" element={<Modal><Upload/></Modal>} /> 
                 </Routes>   
                 {background && (
                     <Routes>
-                        <Route path="/Profile" element={<Modal withHeader={false}><Profile/></Modal>}></Route>
+                        <Route path="/Profile" element={<Modal withHeader={false}><Profile key={uuidv4()}/></Modal>}></Route>
                         <Route path="/EditCategory" element={<Modal><CategoryAdd/></Modal>}></Route>
                         <Route path="/EditCategory/:categoryId" element={<Modal><CategoryAdd/></Modal>}></Route>
                         <Route path="/EditProduct" element={<Modal><ProductAdd/></Modal>} /> 
                         <Route path="/EditProduct/:productId" element={<Modal><ProductAdd/></Modal>} /> 
-                        <Route path="/Upload" element={<Modal><Upload/></Modal>} /> 
                     </Routes>
                 )}  
         </ProtectedRoute>      

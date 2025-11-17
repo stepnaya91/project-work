@@ -13,14 +13,12 @@ const formSchema = z
   .object({
     name: z.string()
       .min(2, { message: 'Min Value 2' })
-      .max(50, 'Max Value 50'),
-    email: z.email('Wrong email format'),
-    signUpDate: z
-    .string()
-    .refine((val) => !isNaN(Date.parse(val)), { message: 'Invalid date' }),
+      .max(50, 'Max Value 50')
   })
 
 type FormData = z.infer<typeof formSchema>;
+
+
 
 export const Profile: React.FC = () => {
     const [updated, setUpdated] = useState<Boolean>(false); 
@@ -36,24 +34,13 @@ export const Profile: React.FC = () => {
         formState: { errors },
         reset,
     } = useForm<FormData>({
-        resolver: zodResolver(formSchema),
-        defaultValues: profile ? {
-            name: profile.name,
-            email: profile.email,
-            signUpDate: profile.signUpDate
-                ? new Date(profile.signUpDate).toISOString().split('T')[0]
-                : '',
-        } : undefined,
+        resolver: zodResolver(formSchema)
     });
 
     useEffect(() => {
         if (profile) {
             reset({
-                name: profile.name,
-                email: profile.email,
-                signUpDate: profile.signUpDate
-                    ? new Date(profile.signUpDate).toISOString().split('T')[0]
-                    : '',
+                name: profile.name
             });
         }
     }, [profile, reset]);
@@ -98,27 +85,27 @@ export const Profile: React.FC = () => {
 
         <label htmlFor="email">Email:</label>
         <input
-            type="email"
+            type="text"
             id="email"
-            className={clsx({ 'input-error': errors.email}, theme)}
+            value={profile.email ?? ''}
+            disabled
+            className={theme}
             placeholder="Enter your email"
-            {...register('email')}
+
         />
-        {errors.email && <p className="error">{errors.email.message}</p>}
 
         <label htmlFor="signUpDate">Last Sign Up:</label>
         <input
             type="date"
+            disabled
             value={
                 profile.signUpDate
                 ? new Date(profile.signUpDate).toISOString().split('T')[0]
                 : ''
             }
             id="signUpDate"
-            className={clsx({ 'input-error': errors.signUpDate}, theme)}
-            {...register('signUpDate')}
+            className={theme}
         />
-        {errors.signUpDate && <p className="error">{errors.signUpDate.message}</p>}
         <button type="submit" className={theme}>{t('confirm')}</button>
         
         {errors.root && <p className="error">Ошибка: {errors.root.message}</p>}
