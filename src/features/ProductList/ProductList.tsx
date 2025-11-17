@@ -9,12 +9,12 @@ export interface ProductListProps {
 export const ProductList: React.FC<ProductListProps>= ({products}) => {
     if (products.length==0)
         return <p>Список товаров пуст</p>;
-
     const productItems = useMemo(() => products.map((product)=>{
         if(product.category){
         return <ProductCard 
             key={product.id} 
             name={product.name} 
+            photo={product.photo??product.photo}
             price={product.price} 
             category={product.category} 
             desc={product.desc} 

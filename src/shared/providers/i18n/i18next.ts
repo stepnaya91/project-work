@@ -15,9 +15,22 @@ const resources = {
         "addToCart": "Cart",
         "profile": "Profile",
         "catalog": "Catalog",
+        "category": "Category",
         "categories": "Categories",
         "addCategory": "Add Category",
-        "changeCategory": "Change Category"
+        "changeCategory": "Change category",
+        "chooseCategory": "Choose category",
+        "changeProduct": "Change Product",
+        "addProduct": "Add Product",
+        "updateProduct": "Update Product",
+        "addNewProduct": "Add Product",
+        "name": "Name",
+        "file": "File",
+        "enterProductName": "Enter product name",
+        "chooseFile": "Choose File",
+        "price": "Price",
+        "enterProductPrice": "Enter Product Price",
+        "description": "Description"
     }
   },
   ru: {
@@ -32,9 +45,22 @@ const resources = {
         "addToCart": "Корзина",
         "profile": "Профиль",
         "catalog": "Каталог",
+        "category": "Категория",
         "categories": "Категории",
         "addCategory": "Добавить категорию",
-        "changeCategory": "Поменять категорию"
+        "changeCategory": "Поменять категорию",
+        "chooseCategory": "Выберите категорию",
+        "changeProduct": "Изменение товара",
+        "addProduct": "Добавление товара",
+        "updateProduct": "Обновить товар",
+        "addNewProduct": "Добавить",
+        "name": "Название",
+        "file": "Файл",
+        "enterProductName": "Введите название товара",
+        "chooseFile": "Выберите файл",
+        "price": "Цена",
+        "enterProductPrice": "Введите цену товара",
+        "description": "Описание"
     }
   }
 };

@@ -13,7 +13,7 @@ interface ProductProps{
 function withAddButton (ProductListComponent: React.FC<ProductProps>) {
 
     return function AddButtonComponent() {   
-        const pageSize = 11;
+        const pageSize = 10;
         const [pageNumber, setPageNumber] = useState(1);
         const [allProducts, setAllProducts] = useState<Product[]>([]);
 
@@ -56,7 +56,6 @@ function withAddButton (ProductListComponent: React.FC<ProductProps>) {
             }
             return <p>{errorMessage}</p>;
         }
-
         return(
             <> 
                 <div className="product-list-div">               
@@ -65,6 +64,7 @@ function withAddButton (ProductListComponent: React.FC<ProductProps>) {
                         <div className="product-list-actions">
                             <NavButton linkTo="/EditProduct" label="Добавить товар"/>     
                             <Button label="Загрузить еще" onClick={loadMore}/>   
+                            <NavButton linkTo="/Upload" label="Загрузка файла"/>
                         </div>       
                     </div>      
                 </div>       

@@ -15,17 +15,25 @@ export const ProductCard: React.FC<Product> = ({id,name, category,price,desc,pho
     const {t} = useLanguage();
     const className="basket-div-"+theme;
     const buttonClassName = "delete-button-"+theme;     
-        const dispatch = useDispatch();
-    
-        const deleteItem = () => dispatch(basketActions.removeItem({id}))
+    const dispatch = useDispatch();
+
+    const deleteItem = () => dispatch(basketActions.removeItem({id}))
     return(
         <>
             <div className={className}>
                 <div className="preview-div">
                     <Link to={"/EditProduct/"+id}  state={{ background: location }}><h2>{name}</h2></Link>
+                    {photo&&
+                    <div>
+                        <img
+                            src={photo}
+                            alt="uploaded"
+                            style={{ maxWidth: '200px', maxHeight:'200px', minHeight:'200px', minWidth:'200px'}}
+                        />
+                    </div>}               
                     <p>Цена: {price}</p>
                     <p>Категория: {category.name}</p>
-                    <p><CroppedText childrenText={desc} opened={false} className="preview-description" /></p>  
+                    <CroppedText childrenText={desc} opened={false} className="preview-description" />
                 </div>
                 <div className="delete-button-div">
                     <BasketButton id={id} name={name} category={category} price={price} desc={desc} photo={photo} commandId={commandId} createdAt={createdAt} updatedAt={updatedAt} oldPrice={oldPrice}/>
