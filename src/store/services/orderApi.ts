@@ -1,19 +1,21 @@
+import { Order } from 'src/entities/Order';
 import { baseApi } from './api';
 
-export const productApi = baseApi.injectEndpoints({
+
+export const orderApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-    getProducts: builder.query<{
-        data: Product[];
+    getOrders: builder.query<{
+        data: Order[];
         pagination: {
             pageSize: number;
             pageNumber: number;
             total: number;
         };
         sorting: {
-            type: string;
-            field: string;
-        };
-        }, ProductFilters>({
+            type: 'ASC' | 'DESC';
+            field: 'id' | 'createdAt' | 'updatedAt' | 'name';
+        }
+        }, OrderFilters>({
         query: (filters) => {
         const params = new URLSearchParams();
             // Преобразуем фильтры в query-параметры
@@ -30,9 +32,10 @@ export const productApi = baseApi.injectEndpoints({
                 }))
             }
 
-            if (filters.name) params.append('name', filters.name);
+            if (filters.productIds) params.append('productIds', filters.productIds.join(','));
             if (filters.ids) params.append('ids', filters.ids.join(','));
-            if (filters.categoryIds) params.append('categoryIds', filters.categoryIds.join(','));
+            if (filters.userId) params.append('userId', filters.userId);
+            if (filters.status) params.append('userId', filters.status);
             
             // Даты фильтры, если они есть
             if (filters.createdAt) {
@@ -47,40 +50,33 @@ export const productApi = baseApi.injectEndpoints({
                     updatedAt_lte: filters.updatedAt.lte
                 }))
             }
-            return `products?${params.toString()}`;           
+            console.log(params);
+            return `orders?${params.toString()}`;           
         }, 
-        providesTags: ["Products"]
+        providesTags: ["Orders"]
     }),
-    getProduct: builder.query({
-        query: (id:string) => `products/${id}`,
-        providesTags: ["Products"]
+    getOrder: builder.query({
+        query: (id:string) => `orders/${id}`,
+        providesTags: ["Orders"]
     }),
     //Создает новую сущность        
-    postProduct: builder.mutation<Product, CreateProduct>({
+    postOrder: builder.mutation<Product, CreateProduct>({
         query: (product) => ({
         url: 'products',
         method: 'POST',
         body: product,
         }),
-        invalidatesTags: ["Products"],
+        invalidatesTags: ["Orders"],
     }),
-    deleteProduct: builder.mutation({
+    deleteOrder: builder.mutation({
         query: (id) => ({
-        url: `products/${id}`,
+        url: `orders/${id}`,
         method: 'DELETE',
         body: id,  
         }),
-        invalidatesTags: ["Products"],
+        invalidatesTags: ["Orders"],
     }),
-    updateProduct: builder.mutation({
-        query: ({id, params}) => ({
-        url:`products/${id}`,
-        method: 'PUT',
-        body: params, 
-        }),
-        invalidatesTags: ["Products"],
-    })
     }),
 });
 
-export const { useGetProductsQuery, useGetProductQuery, usePostProductMutation, useDeleteProductMutation, useUpdateProductMutation } = productApi; 
+export const { useGetOrderQuery, useGetOrdersQuery, usePostOrderMutation, useDeleteOrderMutation } = orderApi; 

@@ -5,6 +5,7 @@ export const profileApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getProfile: builder.query<Profile,void>({
             query: () => 'profile', 
+            providesTags: ["Profile"]
         }),        
         postProfile: builder.mutation({
             query: (profile) => ({
@@ -12,6 +13,7 @@ export const profileApi = baseApi.injectEndpoints({
             method: 'POST',
             body: profile,
             }),
+            invalidatesTags: ["Profile"],
         })
     }),
 });

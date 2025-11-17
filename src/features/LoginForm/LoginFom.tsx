@@ -16,7 +16,11 @@ interface LoginFormProps{
 
 const formSchema = z.object({
         email: z.string(),  
-        password: z.string(),
+        password: z.string()            
+            .min(1,'Укажите пароль')
+            .regex(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
+                "Пароль не менее 8 символов, должен содержать буквы в верхнем и нижнем регистре, цифры и специальные символы: @$!%*?&"),
         commandId: z.string().default(comandID)
     })
 
