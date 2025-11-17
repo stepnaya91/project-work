@@ -6,6 +6,12 @@
     --yellow: #E6C744;
 }
 
+a:visited{
+    color:black
+}
+a{
+    color:black
+}
 
 button{
     font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -49,7 +55,7 @@ button{
     display: inline-block;
     line-height: 1;
     font-size: 12px;
-    padding: 9px 20px;
+    padding: 8px 20px;
     width:100%;
 
 }
@@ -199,6 +205,7 @@ form{display:flex;flex-direction:column;padding:40px 40px 60px 40px;border-radiu
     --lightYellow: #fff5bf;
 }
 .header-div-light, .header-div-dark{
+    gap: 250px;
     padding: 0.5em;
     position: sticky;
     display: flex;
@@ -214,25 +221,42 @@ form{display:flex;flex-direction:column;padding:40px 40px 60px 40px;border-radiu
     border-bottom: 1px solid var(--brown);
     background-color: var(--darkColor);
 }
-.header-div-right{
-    display: block
+.header-div-right {
+    display: flex;
+    flex-direction: row;     
+    gap: 15px;                
+    margin-left: auto;        
+}
+.settings-div {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;                  
+}
+
+.profile-div {
+    display: flex;
+    flex-direction: column;        
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 .link{
     text-decoration: none;
     color: black;
     width: 300px;
-    height: 100%;
+
 }
-.link-light:hover{
+.link-light:hover, .link-light.active{
     background-color: var(--lightYellow);
 }
-.link-dark:hover{
+.link-dark:hover, .link-dark.active{
     background-color: var(--brown);
 }
-.link:active{
-    color: antiquewhite;
-}
-.menu-div{  
+.menu-div {
     display: contents;
     line-height: 60px;
     text-align: center;
@@ -255,69 +279,14 @@ form{display:flex;flex-direction:column;padding:40px 40px 60px 40px;border-radiu
     height:100em;
     background-color: var(--brown);
 }
-.light{
-  background: var(--lightYellow);
-}
-.dark{
-  background: var(--brown);
-}
-.dark::placeholder{
-  color: black
+.product-list-ul{
+    padding-left: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  padding: 40px 40px 60px 40px;
-  border-radius: 20px;
-  color: #1a1a1a;
-  gap: 4px;
-  text-align: left;
 
-  h2 {
-    margin: 0 0 10px 0;
-  }
 
-  & > input,
-  textarea {
-    min-width: 260px;
-    padding: 6px 0 6px 10px;
-  }
-
-  button {
-    margin-top: 24px;
-  }
-
-  fieldset {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-  }
-
-  .fieldset-dark{
-    border-color: var(--grey);
-  }
-
-  .input-error,
-  fieldset:has(input.input-error) {
-    border-color: #ff0202;
-  }
-
-  .error {
-    margin: -4px 0 0 0;
-    font-size: 14px;
-    color: #bd0000;
-  }
-
-  fieldset:has(p.error) p {
-    margin-top: 4px;
-  }
-}
-.basket-add-button-div{ 
-    display: flex; 
-    justify-content: flex-end;
-    padding-right: 0.75em;
-}
 .basket-buttons{
   display: flex;
 }
@@ -358,8 +327,10 @@ form {
 .basket-div-light,.basket-div-dark{
     width: 200px;
     padding: 16px;
-    margin: 0.5em;
-    border-radius: 8px;
+    margin: 0.5em;         
+    display: flex;
+    flex-direction: column;            
+
 }
 .basket-div-dark{
     background-color: var(--darkColor);
@@ -376,8 +347,15 @@ form {
     padding-top: 0.5em;
     padding-right: 0.75em;
     display:flex;
-    justify-content: flex-end;
+    flex-direction: column;    
+    margin-top: auto;           
+    gap: 10px;                  
 }
+
+.delete-button-div button{
+    width: 100%;
+}
+
 .delete-button-dark,.delete-button-light{
     width:100%;
     color:rgb(145, 6, 6);
@@ -389,12 +367,6 @@ form {
 }
 .delete-button-light{
     background-color: var(--yellow);
-}
-.product-list-ul{
-    padding-left: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
 }
 .add-div{
     position:relative;
@@ -419,6 +391,16 @@ form {
     height: 100px;
     width: 200px;
     padding-top: 12px;
+}
+
+.product-list-actions{
+    display: flex;
+    flex-direction: column; 
+    gap:5px ;    
+    top: 100px;
+    position:sticky;
+    padding-top: 8px;
+    height: 12px; 
 }
 form {
   display: flex;
@@ -465,6 +447,37 @@ form {
     margin-top: 4px;
   }
 }
+.categories-table {
+	width: 100%;
+	margin-bottom: 20px;
+	border: 5px solid var(--lightYellow);
+	border-top: 5px solid var(--lightYellow);
+	border-bottom: 3px solid var(--lightYellow);
+	font-size: 15px;
+}
+.categories-table th {
+	font-weight: bold;
+	padding: 7px;
+	background: var(--yellow);
+	border: none;
+	text-align: left;
+	font-size: 15px;
+	border-top: 3px solid var(--lightYellow);
+	border-bottom: 3px solid var(--yellow);
+}
+.categories-table td {
+	padding: 7px;
+	border: none;
+	border-top: 3px solid var(--lightYellow);
+	border-bottom: 3px solid var(--lightYellow);
+	font-size: 15px;
+}
+.categories-table tbody tr:nth-child(even){
+	background: #f8f8f8!important;
+}
 
+.categories-table td a:visited{
+    color: black;
+}
 
 /*# sourceMappingURL=main.css.map*/
